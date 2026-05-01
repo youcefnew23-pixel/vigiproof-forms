@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>E Inscription Operateur — VigiProof</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --vp-navy:  #151D53;
+      --vp-blue:  #2563EB;
+      --vp-yellow: #FAC710;
+      --vp-light-blue: #F1F6FD;
+      --vp-text:  #1F2937;
+    }
+
+    html, body {
+      height: 100%;
+      background-color: var(--vp-navy);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    .vp-header {
+      background-color: var(--vp-navy);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 3px solid var(--vp-yellow);
+    }
+
+    .vp-logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .vp-logo span {
+      color: var(--vp-yellow);
+    }
+
+    .vp-badge {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--vp-navy);
+      background: var(--vp-yellow);
+      border-radius: 4px;
+      padding: 3px 8px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .vp-form-container {
+      width: 100%;
+      height: calc(100vh - 54px);
+    }
+
+    .vp-form-container iframe,
+    .vp-form-container > div {
+      width: 100% !important;
+      height: 100% !important;
+      border: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="vp-header">
+    <div class="vp-logo">Vigi<span>Proof</span></div>
+    <div class="vp-badge">Operateur</div>
+  </header>
+
+  <div class="vp-form-container" id="fillout-container"></div>
+
+  <script>
+    function getUrlParams() {
+      const params = {};
+      new URLSearchParams(window.location.search).forEach((value, key) => {
+        params[key] = value;
+      });
+      return params;
+    }
+
+    function loadFillout() {
+      const script = document.createElement('script');
+      script.src = 'https://server.fillout.com/embed/v1/';
+      script.onload = function() {
+        const params = getUrlParams();
+        Fillout.initEmbed({
+          filloutId: '3v4XmU9ELZus',
+          target: '#fillout-container',
+          inheritParameters: true,
+          dynamicValues: params,
+          style: { height: '100%' }
+        });
+      };
+      document.head.appendChild(script);
+    }
+
+    loadFillout();
+  </script>
+
+</body>
+</html>
