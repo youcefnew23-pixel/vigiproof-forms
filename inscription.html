@@ -9,11 +9,9 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --vp-navy:  #151D53;
-      --vp-blue:  #2563EB;
+      --vp-navy:   #151D53;
       --vp-yellow: #FAC710;
-      --vp-light-blue: #F1F6FD;
-      --vp-text:  #1F2937;
+      --vp-blue:   #2563EB;
     }
 
     html, body {
@@ -39,9 +37,7 @@
       text-transform: uppercase;
     }
 
-    .vp-logo span {
-      color: var(--vp-yellow);
-    }
+    .vp-logo span { color: var(--vp-yellow); }
 
     .vp-badge {
       font-size: 11px;
@@ -57,13 +53,7 @@
     .vp-form-container {
       width: 100%;
       height: calc(100vh - 54px);
-    }
-
-    .vp-form-container iframe,
-    .vp-form-container > div {
-      width: 100% !important;
-      height: 100% !important;
-      border: none !important;
+      background: #fff;
     }
   </style>
 </head>
@@ -74,35 +64,17 @@
     <div class="vp-badge">Entreprise</div>
   </header>
 
-  <div class="vp-form-container" id="fillout-container"></div>
+  <div class="vp-form-container">
+    <div 
+      data-fillout-id="kgqyn5iqdTus"
+      data-fillout-embed-type="fullscreen"
+      data-fillout-inherit-parameters
+      data-fillout-dynamic-resize
+      style="width:100%;height:100%;">
+    </div>
+  </div>
 
-  <script>
-    function getUrlParams() {
-      const params = {};
-      new URLSearchParams(window.location.search).forEach((value, key) => {
-        params[key] = value;
-      });
-      return params;
-    }
-
-    function loadFillout() {
-      const script = document.createElement('script');
-      script.src = 'https://server.fillout.com/embed/v1/';
-      script.onload = function() {
-        const params = getUrlParams();
-        Fillout.initEmbed({
-          filloutId: 'kgqyn5iqdTus',
-          target: '#fillout-container',
-          inheritParameters: true,
-          dynamicValues: params,
-          style: { height: '100%' }
-        });
-      };
-      document.head.appendChild(script);
-    }
-
-    loadFillout();
-  </script>
+  <script src="https://server.fillout.com/embed/v1/"></script>
 
 </body>
 </html>
